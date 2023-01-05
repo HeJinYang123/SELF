@@ -90,6 +90,7 @@ std::vector<IntegerMatrix> AddDelReverseLine(IntegerMatrix G,int i=0,int j=0){
   if(i>=1&&j>=1){
     i--;
     j--;
+    //if(bg_rules(i,j)!=0) return GList;
     if(G(i,j)==1){
       G(i,j)=0; //del
       //G(j,i)=0;

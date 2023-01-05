@@ -173,9 +173,10 @@ updateScore_ml_cd<-function(G,D,NodeScore,nodes,score_type="bic",bw ="nrd0",boos
 
 fhc<-function(D,G=NULL,min_increase=0.01,score_type="bic",
                       file="",verbose=TRUE,save_model=FALSE,
-                      bw ="nrd0",booster="gbtree",gamma=10,nrounds=30,...){
+                      bw ="nrd0",booster="gbtree",gamma=10,nrounds=30,bg=NULL,...){
   min_history_diff=0
   h=5
+  bgcopy=bg
   #if(h<2)stop("h should be greater than 2")
   if(is.null(G)){
     G=matrix(0,nrow=ncol(D),ncol=ncol(D))
@@ -256,6 +257,7 @@ fhc<-function(D,G=NULL,min_increase=0.01,score_type="bic",
       for (j in 1:ncol(G)) {
         if(i!=j){
           # here i should choose the top ten j for each i in the graph,j the
+          if(!is.null(bg) && bg[i][j]!=0){next}
           res<-AddDelReverseLine(G,i=i,j=j)
           GList<-append(GList,res)
         }
@@ -314,7 +316,9 @@ fhc<-function(D,G=NULL,min_increase=0.01,score_type="bic",
     }
 
     if(all(oldG==G))break
-print(G)
+    # print(G)
   }
+  print(paste0(c("final ans \n bestscore:",sum(bestScore))))
+  print(G)
   return(bestG)
 }

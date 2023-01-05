@@ -25,7 +25,8 @@ fhc(D, G = NULL, min_increase = 0.01, score_type = "bic", file = "",
 
 \item{bw}{the smoothing bandwidth which is the parameter of the function stats::density(Kernel stats::density Estimation)}
 
-\item{booster}{Choose the regression method, it could be "lm", "gbtree" and "gblinear". The "lm" and "gblinear" is the linear regression methods and "gbtree" is the nonlinear regression method. Default: gbtree}
+\item{booster}{Choose the regression method, it could be "lm", "gbtree" and "gblinear". The "lm" and "gbl
+inear" is the linear regression methods and "gbtree" is the nonlinear regression method. Default: gbtree}
 
 \item{gamma}{The parameter in xgboost: minimum loss reduction required to make a further partition on a leaf node of the tree. the larger, the more conservative the algorithm will be.}
 
